@@ -1,15 +1,27 @@
 const cacheName="myfirstcache";
 const appFiles=[
-	"/the-manifest-file.json",
-	"/js/some-main-javascript-file.js",
-	"/css/some-stylesheet-file.css",
-	"/images/some-image.extension",
-	"etc.etc"
+	"/manifest.json",
+	"/js/scripts.js",
+	"/css/stylesheet.css",
+	"/images/yes.gif",
 ];
+
+
+
 
 self.addEventListener("install",(installing)=>{
     console.log("Service Worker: I am being installed, hello world!");
-  });
+
+
+  installing.waitUntil(
+    caches.open(cacheName).then((cache)=>{
+      console.log("Service Worker: Caching important offline files");
+      return cache.addAll(appFiles);
+    })
+  );
+  //this fucker down here
+});
+
 
   self.addEventListener("activate",(activating)=>{
     console.log("Service Worker: All systems online, ready to go!");

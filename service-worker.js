@@ -29,6 +29,30 @@ self.addEventListener("install",(installing)=>{
 
   self.addEventListener("fetch",(fetching)=>{
     console.log("Service Worker: User threw a ball, I need to fetch it!");
+
+    fetching.respondWith(
+      caches.match(fetching.request.url).then((response)=>{
+        console.log("Service Worker: Fetching resource "+fetching.request.url);
+        return response||fetch(fetching.request).then((response)=>{
+          console.log("Service Worker: Resource "+fetching.request.url+" not available in cache");
+          return caches.open(cacheName).then((cache)=>{
+              console.log("Service Worker: Caching (new) resource "+fetching.request.url);
+              cache.put(fetching.request,response.clone());
+            return response;
+          });
+        }).catch(function(){
+          console.log("Service Worker: Fetching online failed, HAALLPPPP!!!");
+          //Do something else with the request (respond with a different cached file)
+        })
+      })
+    );
+
+
+
+
+
+
+
   });
 
   self.addEventListener("push",(pushing)=>{

@@ -1,9 +1,10 @@
 const cacheName="myfirstcache";
 const appFiles=[
-	"/manifest.json",
-	"/js/scripts.js",
-	"/css/stylesheet.css",
-	"/images/yes.gif",
+	"",
+	"manifest.json",
+	"js/scripts.js",
+	"css/stylesheet.css",
+	"images/yes.gif",
 ];
 
 

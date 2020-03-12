@@ -4,7 +4,7 @@
   "theme_color": "#c321f3",
   "background_color": "#1f9cda",
   "display": "fullscreen",
-  "Scope": "/",
+  "Scope": "/PWA/",
   "start_url": "/PWA/",
   "icons": [
     {

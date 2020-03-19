@@ -33,3 +33,39 @@ if(typeof Notification!==typeof undefined){ //First check if the API is availabl
 		console.log(error);
 	});
 }
+
+
+//custom install prompt
+let installPrompt;
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  installPrompt = event;
+
+  const installbutton = document.getElementById('installbutton');
+  installbutton.style.display = "block";
+
+  installbutton.addEventListener("click", event => {
+    installPrompt.prompt();
+
+    installbutton.style.display = "none";
+
+    installPrompt.userChoice.then(choiceResult => {
+      if (choiceResult.outcome !== "accepted") {
+        installbutton.style.display = "block";
+      }
+      installPrompt = null;
+    });
+  });
+});
+
+// Install hint for iOS
+//iOS install tip show
+const isIOSUsed=()=>{
+  const userAgent=window.navigator.userAgent.toLowerCase();
+  return /iphone|ipad|ipod/.test(userAgent); //Return if iOS is used (iPhone, iPod or iPad)
+}
+
+const standaloneModeActive=()=>("standalone" in window.navigator)&&(window.navigator.standalone); //Will be true if the PWA is used
+if(isIOSUsed()&&!standaloneModeActive()){
+  //Show your install tip for iOS here
+}

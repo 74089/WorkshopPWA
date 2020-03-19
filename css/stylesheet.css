@@ -45,3 +45,27 @@ footer button{
 
 	display: none;
 }
+
+#installbutton{
+	background-color: black;
+	border: 1px solid white;
+	color: white;
+	border-radius: 15px;
+	padding: 15px;
+	position: absolute;
+	z-index: 10;
+	bottom: 12vh;
+}
+
+
+
+
+
+
+#carousel {
+	display: grid;
+	grid-template-columns: 175px 175px 175px 175px 175px 175px 175px 175px;
+	/* grid-template-rows: 245px 245px; */
+	width: 100%;
+	overflow: scroll;
+}
